@@ -10,7 +10,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class Repository(val  jdbcUrl: String, val username: String, val  password: String ) {
+class Repository(jdbcUrl: String, username: String, password: String ) {
     private val storageConnection =  DriverManager.getConnection(jdbcUrl, username, password)
     fun createTableTicket() {
         val createTableStatement = storageConnection.prepareStatement(
