@@ -4,14 +4,15 @@
 package kotlin_testcontainers
 
 import Ticket
+import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.containers.PostgreSQLContainer
 import java.sql.DriverManager
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class Repository(jdbcUrl: String, username: String, password: String ) {
-    private val storageConnection =  DriverManager.getConnection(jdbcUrl, username, password)
+class Repository(jdbcUrl: String, username: String, password: String) {
+    private val storageConnection = DriverManager.getConnection(jdbcUrl, username, password)
     fun createTableTicket() {
         val createTableStatement = storageConnection.prepareStatement(
             """ 
@@ -32,6 +33,7 @@ class Repository(jdbcUrl: String, username: String, password: String ) {
         insertStatement.setInt(2, ticket.elapseMinutes)
         insertStatement.execute()
     }
+
     fun cardinalityTickets(): Int {
         val selectStatement = storageConnection.prepareStatement(
             "select count(*) as cardinalityTickets from ticket"
@@ -43,12 +45,14 @@ class Repository(jdbcUrl: String, username: String, password: String ) {
 }
 
 class AppTest {
-    @Test fun appHasAGreeting() {
+    @Test
+    fun appHasAGreeting() {
         val classUnderTest = App()
         assertNotNull(classUnderTest.greeting, "app should have a greeting")
     }
 
-    @Test fun testContainerPostgres() {
+    @Test
+    fun testContainerPostgres() {
         // Arrange
         val postgres = PostgreSQLContainer("postgres:16")
         postgres.start()
@@ -64,6 +68,13 @@ class AppTest {
 
         // Assert
         assertEquals(2, countTickets)
+    }
+
+        @Test fun testContainerMySql() {
+        val mysql = MySQLContainer("mysql:8")
+        mysql.start()
+        mysql.stop()
+        assertEquals("yes", "yes")
     }
 
 }
