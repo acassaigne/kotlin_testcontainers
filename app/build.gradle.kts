@@ -27,6 +27,16 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+    // Testcontainers with myssql & postgres
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testImplementation("org.testcontainers:testcontainers:1.20.1")
+    implementation(platform("org.testcontainers:testcontainers-bom:1.20.1"))
+    testImplementation("org.testcontainers:mysql")
+    testImplementation("mysql:mysql-connector-java:8.0.33")
+    testImplementation("org.testcontainers:postgresql:1.20.1")
+    testImplementation("org.postgresql:postgresql:42.7.4")
+
+
     // This dependency is used by the application.
     implementation("com.google.guava:guava:32.1.1-jre")
 }

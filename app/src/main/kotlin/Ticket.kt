@@ -1,0 +1,1 @@
+data class Ticket(val id: Int, val elapseMinutes: Int)
