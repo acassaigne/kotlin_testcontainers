@@ -25,7 +25,7 @@ class Repository(jdbcUrl: String, username: String, password: String) {
         createTableStatement.execute()
     }
 
-    fun saveTicket(ticket: Ticket) {
+    fun createTicket(ticket: Ticket) {
         val insertStatement = storageConnection.prepareStatement(
             "insert into ticket(id, park_time_minutes) values (?, ?)"
         )
@@ -58,8 +58,8 @@ class AppTest {
         postgres.start()
         val repo = Repository(postgres.getJdbcUrl(), postgres.getUsername(), postgres.getPassword())
         repo.createTableTicket()
-        repo.saveTicket(Ticket(id = 1, elapseMinutes = 30))
-        repo.saveTicket(Ticket(id = 2, elapseMinutes = 18))
+        repo.createTicket(Ticket(id = 1, elapseMinutes = 30))
+        repo.createTicket(Ticket(id = 2, elapseMinutes = 18))
 
         // Act
         val countTickets = repo.cardinalityTickets()

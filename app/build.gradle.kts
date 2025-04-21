@@ -29,13 +29,17 @@ dependencies {
 
     // Testcontainers with myssql & postgres
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.3")
-    testImplementation("org.testcontainers:testcontainers:1.20.1")
-    implementation(platform("org.testcontainers:testcontainers-bom:1.20.1"))
-    testImplementation("org.testcontainers:mysql")
-    testImplementation("mysql:mysql-connector-java:8.0.33")
+    testImplementation("org.testcontainers:testcontainers:1.20.6")
+    implementation(platform("org.testcontainers:testcontainers-bom:1.20.6"))
+    testImplementation("org.testcontainers:mysql:1.20.6")
+    testImplementation("com.mysql:mysql-connector-j:9.2.0")
     testImplementation("org.testcontainers:postgresql:1.20.1")
     testImplementation("org.postgresql:postgresql:42.7.4")
 
+    // Testcontainers mongodb
+    testImplementation("org.testcontainers:mongodb:1.20.6")
+    implementation("org.mongodb:mongodb-driver-kotlin-sync:5.4.0")
+    implementation("org.mongodb:bson-kotlin:5.4.0")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:32.1.1-jre")
